@@ -3,9 +3,9 @@ def call(String project, String service, String buildNumber, String path, String
     def imageTag = "${registry}/${project}-${service}:${buildNumber}"
 
     // docker.build("${registry}/demo-service:${BUILD_NUMBER}", "-f ./src/demoservice/Dockerfile ./src/demoservice")
-    docker.build("${imageTag}", "-f ${path} ${contextPath}")
+    // docker.build("${imageTag}", "-f ${path} ${contextPath}")
 
-    // sh "docker image build -t ${hubUser}/${project}:beta-${env.BRANCH_NAME}-${env.BUILD_NUMBER} ."
+    sh "docker image build -t ${imageTag} -f ${path} ${contextPath}"
     // withCredentials([usernamePassword(
     //         credentialsId: "docker",
     //         usernameVariable: "USER",
